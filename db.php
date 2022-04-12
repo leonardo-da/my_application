@@ -14,6 +14,5 @@
     }else{
         $Message = "Error";
     }
-    echo($Message); 
-    echo("charmin")
+    echo($Message);
 ?>
