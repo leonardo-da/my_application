@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { Box, Icon, Heading, Stack, Text, FormControl, Input, VStack, Link, Button, HStack, Center, NativeBaseProvider, View } from "native-base";
+import React, { useState, useEffect, Component} from 'react';
+import { Box, TouchableOpacity, Icon, Heading, Stack, Text, FormControl, Input, VStack, Link, Button, HStack, Center, NativeBaseProvider, View } from "native-base";
 import { useNavigation } from '@react-navigation/core';
+import axios from 'axios';
+
 
 
 const Example = () => {
-  //const [email, setEmail] = useState('') //to obtain a value of input Email
-  //const [pass, setPass] = useState('') //to obtain a value of input Password
-
   const navigation = useNavigation()
-
+    
     return <Center w="100%">
         <Box safeArea p="2" w="90%" maxW="290" py="8">
           <Heading size="lg" color="coolGray.800" _dark={{
@@ -22,21 +21,23 @@ const Example = () => {
             Sign up to continue!
           </Heading>
           <VStack space={3} mt="5">
+            
             <FormControl>
               <FormControl.Label>Email</FormControl.Label>
-              <Input />
+              <Input placeholder="Email" keyboardType="email-address" onChange={Email=>this.setState({Email})}/>
             </FormControl>
             <FormControl>
               <FormControl.Label>Password</FormControl.Label>
-              <Input type="password" />
+              <Input type="password" placeholder="Password" onChange={Password=>this.setState({Password})}/>
             </FormControl>
             <FormControl>
               <FormControl.Label>Confirm Password</FormControl.Label>
-              <Input type="password" />
+              <Input type="password" placeholder="Password"/>
             </FormControl>
-            <Button mt="2" colorScheme="indigo">
+            <Button mt="2" colorScheme="indigo" >
               Sign up
             </Button>
+
             <HStack mt="6" justifyContent="center">
             <Text fontSize="sm" color="coolGray.600" _dark={{
             color: "warmGray.200"
