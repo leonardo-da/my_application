@@ -9,6 +9,7 @@ const Example = () => {
     color: "warmGray.50"
   }} fontWeight="semibold">
       Room2
+      Adding this text to test Github
     </Heading>
     <Button
       onPress={() => console.log("Change the image on the backgorund")}
