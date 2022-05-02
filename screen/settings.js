@@ -1,23 +1,36 @@
 import React, { useState } from 'react';
 import { Picker, Select, Box, Icon, Heading, Stack, Text, FormControl, Input, VStack, Link, Button, HStack, Center, NativeBaseProvider, View} from "native-base";
+import { StyleSheet } from 'react-native';
+import axios from 'axios';
+
 
 const Example = () => {
   const [email, setEmail] = useState('')
   
-  return <Center w="100%">
-  <Box safeArea p="2" w="90%" maxW="290" py="8">
+  const styles = StyleSheet.create({
+    Button: {
+      backgroundColor: '#ff5a66',
+      borderRadius: 20,
+      height:45,
+      marginLeft:8
+    },
+    Textstl:{
+      color:"#ff5a66",
+      fontSize:16
+    }
+    });
+
+  return <Center w="100%" h="80%">
+  <Box safeArea p="2" w="80%" py="8">
 
     <VStack space={3}>
-      <Heading size="lg" color="coolGray.800" _dark={{
-        color: "warmGray.50"
-        }} fontWeight="semibold">
+      <Heading size="lg" color="#ff5a66">
           Set time
       </Heading>
-      <FormControl>
-        <FormControl.Label>Light on</FormControl.Label>
-      </FormControl>
+
+      <Text style={styles.Textstl} mt="30">Light On</Text>
       <HStack justifyContent="center">
-      <Select placeholder="Hour" width="40%">
+      <Select placeholder="Hour" width="40%" borderRadius="20" pl="5" borderColor="#20232a">
           <Select.Item label="01" value="01" />
           <Select.Item label="02" value="02" />
           <Select.Item label="03" value="03" />
@@ -42,7 +55,7 @@ const Example = () => {
           <Select.Item label="22" value="22" />
           <Select.Item label="23" value="23" />
         </Select>
-        <Select placeholder="Minute" width="40%" ml="3">
+        <Select placeholder="Minute" width="40%" borderRadius="20" pl="5" borderColor="#20232a" ml="3">
           <Select.Item label="00" value="00" />
           <Select.Item label="05" value="05" />
           <Select.Item label="10" value="10" />
@@ -56,14 +69,12 @@ const Example = () => {
           <Select.Item label="50" value="50" />
           <Select.Item label="55" value="55" />
         </Select>
-        <Button ml="3" colorScheme="indigo">Go</Button>
+        <Button style={styles.Button}>Go</Button>
       </HStack>
 
-      <FormControl>
-        <FormControl.Label>Light off</FormControl.Label>
-      </FormControl>
+      <Text style={styles.Textstl} mt="5">Light Off</Text>
       <HStack justifyContent="center">
-      <Select placeholder="Hour" width="40%">
+      <Select placeholder="Hour" width="40%" borderRadius="20" pl="5" borderColor="#20232a">
           <Select.Item label="01" value="01" />
           <Select.Item label="02" value="02" />
           <Select.Item label="03" value="03" />
@@ -88,7 +99,7 @@ const Example = () => {
           <Select.Item label="22" value="22" />
           <Select.Item label="23" value="23" />
         </Select>
-        <Select placeholder="Minute" width="40%" ml="3">
+        <Select placeholder="Minute" width="40%" borderRadius="20" pl="5" borderColor="#20232a" ml="3">
           <Select.Item label="00" value="00" />
           <Select.Item label="05" value="05" />
           <Select.Item label="10" value="10" />
@@ -102,12 +113,10 @@ const Example = () => {
           <Select.Item label="50" value="50" />
           <Select.Item label="55" value="55" />
         </Select>
-        <Button ml="3" colorScheme="indigo">Go</Button>
+        <Button style={styles.Button}>Go</Button>
       </HStack>
 
-      <Heading size="lg" mt="5" color="coolGray.800" _dark={{
-        color: "warmGray.50"
-        }} fontWeight="semibold">
+      <Heading size="lg" mt="8" color="#ff5a66" fontWeight="semibold">
           Current Time
       </Heading>
     <Text>The current time is: On:07:00 Off:22:00</Text>

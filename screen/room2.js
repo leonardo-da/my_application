@@ -1,23 +1,35 @@
 import * as React from "react";
-import { Box, Icon, Heading, Stack, Text, FormControl, Input, VStack, Link, Button, HStack, Center, NativeBaseProvider, View } from "native-base";
+import { Box, Icon, Heading, Image, Stack, Text, FormControl, Input, VStack, Link, Button, HStack, Center, NativeBaseProvider, View } from "native-base";
 
+
+import { StyleSheet } from 'react-native';
 
 const Example = () => {
-  return <Center w="100%">
-  <Box safeArea p="2" w="90%" maxW="290" py="8">
-    <Heading size="lg" color="coolGray.800" _dark={{
-    color: "warmGray.50"
-  }} fontWeight="semibold">
-      Room2
-    </Heading>
-    <Button
-      onPress={() => console.log("Change the image on the backgorund")}
-    >
-      Click Me
-    </Button>
-  </Box>
-  <Image size={150} resizeMode={"contain"} borderRadius={100} source={{uri: "https://wallpaperaccess.com/full/317501.jpg"}} alt="Alternate Text" />
-</Center>;
-};
+  const styles = StyleSheet.create({
+    Button: {
+      backgroundColor: '#ff5a66',
+      borderRadius: 20,
+      width:'90%',
+      height:'12%'
+    },
+    Textstl:{
+      color: '#fff',
+      fontSize:16
+    }
+    });
+
+    return <Center w="100%">
+          <Box p="2" py="4" w="80%">
+            <Heading size="xl" color="#ff5a66"> Room 2 </Heading>
+    
+            <VStack mt="10" alignItems='center' >
+              <Button style={styles.Button}><Text style={styles.Textstl}> Light On </Text></Button>
+              <Button mt="3" style={styles.Button}><Text style={styles.Textstl}> Light Off </Text></Button>
+              <Image mt="5" source={ require('../assets/lampOn.png') } alt="lamp" size="64"/>
+            </VStack>
+          </Box>
+          
+        </Center>;
+    };
 
 export default Example

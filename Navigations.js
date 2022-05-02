@@ -18,29 +18,40 @@ const Navigation = () =>{
 
     function TabScreenConfiguration (){
         return (
-                <Tab.Navigator
-                screenOptions={({ route }) => ({
-                  tabBarIcon: ({ focused, color, size }) => {
-                    let iconName;
-        
-                    if (route.name === 'room1') {
-                      iconName = focused ? 'ios-sunny' : 'ios-sunny-outline';
-                    } else if(route.name === 'room2') {
-                        iconName = focused ? 'ios-sunny' : 'ios-sunny-outline';
-                    } else if (route.name === 'Settings') {
-                      iconName = focused ? 'ios-list' : 'ios-list-outline';
-                    }
-                    
-                    return <Ionicons name={iconName} size={size} color={color} />;
-                  },
-                  tabBarActiveTintColor: 'tomato',
-                  tabBarInactiveTintColor: 'gray',
-                })}
-              >
-                <Tab.Screen name="room1" component={room1} />
-                <Tab.Screen name="room2" component={room2} />
-                <Tab.Screen name="Settings" component={Settings} />
-              </Tab.Navigator>
+          <Tab.Navigator
+            screenOptions={({ route }) => ({
+              headerShown: false,
+              tabBarStyle:{
+                position:'absolute',
+                borderRadius:20,
+                bottom:-20,
+                left:20,
+                right:20,
+                height:90,
+                paddingBottom:30,
+                paddingTop:10
+              },
+              tabBarIcon: ({ focused, color, size }) => {
+                let iconName;
+    
+                if (route.name === 'room1') {
+                  iconName = focused ? 'ios-sunny' : 'ios-sunny-outline';
+                } else if(route.name === 'room2') {
+                    iconName = focused ? 'ios-sunny' : 'ios-sunny-outline';
+                } else if (route.name === 'Settings') {
+                  iconName = focused ? 'ios-list' : 'ios-list-outline';
+                }
+                
+                return <Ionicons name={iconName} size={size} color={color} />;
+              },
+              tabBarActiveTintColor: '#ff5a66',
+              tabBarInactiveTintColor: 'gray',
+            })}
+        >
+          <Tab.Screen name="room1" component={room1} />
+          <Tab.Screen name="room2" component={room2} />
+          <Tab.Screen name="Settings" component={Settings} />
+        </Tab.Navigator>
         )
     }
 

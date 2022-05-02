@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Heading, Text, FormControl, Input, VStack, Link, Button, HStack, Center, View } from "native-base";
 import { useNavigation } from '@react-navigation/core';
+import { StyleSheet } from 'react-native';
+import axios from 'axios';
 
 const Example = () => {
 
@@ -10,38 +12,34 @@ const Example = () => {
   const navigation = useNavigation()
 
 
+  const styles = StyleSheet.create({
+    inputstl: {
+      borderRadius: 20,
+      borderColor: "#20232a",
+      width: '100%',
+      paddingLeft:20,
+      margin:5,
+      fontSize:14
+    },
+    Button: {
+      backgroundColor: '#ff5a66',
+      borderRadius: 20,
+      width:'70%',
+      height:45
+    }
+    });
+
   return (
   <View>
       <Center w="100%">
-      <Box safeArea p="2" py="8" w="90%" maxW="290">
-        <Heading size="lg" fontWeight="600" color="coolGray.800" _dark={{
-        color: "warmGray.50"
-      }}>
-          Welcome
-        </Heading>
-        <Heading mt="1" _dark={{
-        color: "warmGray.200"
-      }} color="coolGray.600" fontWeight="medium" size="xs">
-          Sign in to continue!
-        </Heading>
+      <Box safeArea p="2" py="8" w="80%">
+        <Heading size="xl" color="#ff5a66" mt="12">Sign in</Heading>
 
-        <VStack space={3} mt="5">
-          <FormControl>
-            <FormControl.Label>Email ID</FormControl.Label>
-            <Input placeholder="Email" value={email} onChangeText={text=>setEmail(text)}/>
-          </FormControl>
-          <FormControl>
-            <FormControl.Label>Password</FormControl.Label>
-            <Input placeholder="password" value={pass} onChangeText={text=>setPass(text)}/>
-            <Link _text={{
-            fontSize: "xs",
-            fontWeight: "500",
-            color: "indigo.500"
-          }} alignSelf="flex-end" mt="1">
-              Forget Password?
-            </Link>
-          </FormControl>
-          <Button mt="2" colorScheme="indigo" >
+        <VStack space={3} mt="20" alignItems='center' justifyContent="center">
+          <Input placeholder="Email" keyboardType="email-address" style={styles.inputstl}/>
+          <Input type="password" placeholder="Password" style={styles.inputstl}/>
+            
+          <Button mt="2" style={styles.Button} >
             Sign in
           </Button>
           <HStack mt="6" justifyContent="center">
@@ -51,7 +49,7 @@ const Example = () => {
               I'm a new user.{" "}
             </Text>
             <Link _text={{
-            color: "indigo.500",
+            color: "#ff5a66",
             fontWeight: "medium",
             fontSize: "sm"
           }} onPress={()=>{navigation.navigate('Smart House')}}>
