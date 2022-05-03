@@ -5,9 +5,8 @@ import { StyleSheet } from 'react-native';
 import axios from 'axios';
 
 const Example = () => {
-
-  const [email, setEmail] = useState('') //to obtain a value of input Email
-  const [pass, setPass] = useState('') //to obtain a value of input Password
+  const baseUrl = "http://192.168.1.72:80";
+  const url = `${baseUrl}/multi/login.php`;
 
   const navigation = useNavigation()
 
@@ -29,6 +28,27 @@ const Example = () => {
     }
     });
 
+    const Login = async() =>{
+  
+        axios.post(url, {
+          Email:'Dan@gmail.com',
+          Password:'12345678'
+        }
+        )
+          .then(function (response) {
+              console.log(response);
+              if( response.data[0] == "U"){
+                alert("Email or Password incorrect")
+              }else{
+                alert("Successful entry")
+                navigation.navigate('Smart House')
+              }
+          })
+          .catch(function (error) {
+              console.log(error);
+          });
+      }
+
   return (
   <View>
       <Center w="100%">
@@ -39,22 +59,15 @@ const Example = () => {
           <Input placeholder="Email" keyboardType="email-address" style={styles.inputstl}/>
           <Input type="password" placeholder="Password" style={styles.inputstl}/>
             
-          <Button mt="2" style={styles.Button} >
+          <Button mt="2" style={styles.Button} onPress={Login}>
             Sign in
           </Button>
           <HStack mt="6" justifyContent="center">
             <Text fontSize="sm" color="coolGray.600" _dark={{
             color: "warmGray.200"
           }}>
-              I'm a new user.{" "}
+              If you are a new user please contact the Administrator.
             </Text>
-            <Link _text={{
-            color: "#ff5a66",
-            fontWeight: "medium",
-            fontSize: "sm"
-          }} onPress={()=>{navigation.navigate('Smart House')}}>
-              Sign Up
-            </Link>
           </HStack>
         </VStack>
       </Box>

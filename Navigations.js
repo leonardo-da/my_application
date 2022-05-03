@@ -59,7 +59,6 @@ const Navigation = () =>{
         <NavigationContainer>
             <NativeBaseProvider>
                 <Stack.Navigator>
-                    <Stack.Screen name = 'signup' component = { signup } />
                     <Stack.Screen name = 'login' component = { logins } />
                     <Stack.Screen name = 'Smart House'>{()=>(
                             <TabScreenConfiguration/>)}

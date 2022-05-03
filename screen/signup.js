@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Component} from 'react';
-import { Box, Heading, Text, Input, VStack, Link, Button, HStack, Center } from "native-base";
+import { Box, Heading, Text, Input, VStack, Link, Button, HStack, Center, Alert } from "native-base";
 import { useNavigation } from '@react-navigation/core';
 import { StyleSheet } from 'react-native';
 import axios from 'axios';
@@ -9,25 +9,31 @@ import axios from 'axios';
 const Example = () => {
   const navigation = useNavigation();
   const baseUrl = "http://192.168.1.72:80";
+  const url = `${baseUrl}/multi/signUp.php`
     
 
   const Login = async() =>{
-    const formData = new FormData()
-    formData.append('Email','daniel@gmail.com')
-    formData.append('Password','12345678')
-      const response = await axios({
-        method: 'POST',
-        url: `${baseUrl}/multi/signUp.php`,
-        data: formData,
-        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-      }).then(function (response) {
-          //handle success
-          console.log(response);
-        }).catch(function (response) {
-          //handle error
-          console.log(response);
+    data = {
+      Email:'daniel6@gmail.com',
+      Password:'12345678'
+    }
+
+      axios.post(url, 
+        data
+      )
+        .then(function (response) {
+            console.log(response);
+            if( response.data[0] == "U"){
+              alert("User already registered")
+            }else{
+              alert("Student has been register successfully")
+              navigation.navigate('login')
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
         });
-  }
+    }
 
   const styles = StyleSheet.create({
     inputstl: {
