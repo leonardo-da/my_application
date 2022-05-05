@@ -28,13 +28,14 @@ const Example = () => {
     }
     });
 
+    const [Email, setEmail] = React.useState('');
+    const [Password, setPassword] = React.useState('');
+
     const Login = async() =>{
-  
-        axios.post(url, {
-          Email:'Dan@gmail.com',
-          Password:'12345678'
-        }
-        )
+        axios.post(url,{
+          Email:Email,
+          Password:Password
+        })
           .then(function (response) {
               console.log(response);
               if( response.data[0] == "U"){
@@ -56,16 +57,16 @@ const Example = () => {
         <Heading size="xl" color="#ff5a66" mt="12">Sign in</Heading>
 
         <VStack space={3} mt="20" alignItems='center' justifyContent="center">
-          <Input placeholder="Email" keyboardType="email-address" style={styles.inputstl}/>
-          <Input type="password" placeholder="Password" style={styles.inputstl}/>
+
+          <Input placeholder="Email" keyboardType="email-address" style={styles.inputstl} value={Email} onChangeText={Email => setEmail(Email)}/>
+
+          <Input type="password" placeholder="Password" style={styles.inputstl} value={Password} onChangeText={Password => setPassword(Password)}/>
             
           <Button mt="2" style={styles.Button} onPress={Login}>
             Sign in
           </Button>
           <HStack mt="6" justifyContent="center">
-            <Text fontSize="sm" color="coolGray.600" _dark={{
-            color: "warmGray.200"
-          }}>
+            <Text fontSize="sm" color="coolGray.600" >
               If you are a new user please contact the Administrator.
             </Text>
           </HStack>
