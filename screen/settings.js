@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Picker, Select, Box, Icon, Heading, Stack, Text, FormControl, Input, VStack, Link, Button, HStack, Center, NativeBaseProvider, View} from "native-base";
+import React, { useState, useEffect } from 'react';
+import { Picker, Select, Box, Icon, Heading, Stack, Text, FormControl, Input, VStack, Link, Button, HStack, Center, FlatList} from "native-base";
 import { StyleSheet } from 'react-native';
 import axios from 'axios';
 
@@ -30,6 +30,18 @@ const Example = () => {
   const [MinuteOff, setMinuteOff] = React.useState('');
   const [roomOff, setRoomOff] = React.useState('');
 
+  const [Config, setConfig] = React.useState('');
+
+  useEffect(()=>{
+    res();
+  },[]);
+
+  function res() {
+    axios.get(url2).then((response) => {
+    console.log(response.data);
+    setConfig(response.data);
+  })};
+
     const lightOn = async() =>{
       if(HourOn == '' || MinuteOn == '' || roomOn == ''){
         alert("There is empty data")
@@ -41,16 +53,17 @@ const Example = () => {
         })
           .then(function (response) {
               console.log(response);
-              alert(response.data)
+              alert(response.data);
           })
           .catch(function (error) {
               console.log(error);
           });
       }
+        res();
         setHourOn('');
         setMinuteOn('');
         setRoomOn('');
-    }
+    };
 
     const lightOff = async() =>{
       if(HourOff == '' || MinuteOff == '' || roomOff == ''){
@@ -63,21 +76,17 @@ const Example = () => {
         })
           .then(function (response) {
               console.log(response);
-              alert(response.data)
+              alert(response.data);
           })
           .catch(function (error) {
               console.log(error);
           });
       }
+        res();
         setHourOff('');
         setMinuteOff('');
         setRoomOff('');
-    }
-
-    
-    /*const res = axios.get(url2).then((response) => {
-      console.log(response.data);
-    });*/
+    };
 
   return <Center w="100%" h="80%">
   <Box safeArea p="2" w="80%" py="8">
@@ -186,7 +195,7 @@ const Example = () => {
       <Heading size="lg" mt="8" color="#ff5a66" fontWeight="semibold">
           Current Time
       </Heading>
-    <Text> asdas</Text>
+    <Text fontSize="16">{Config}</Text>
     </VStack>
   </Box>
 </Center>;

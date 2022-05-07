@@ -8,7 +8,7 @@ const Example = () => {
   const baseUrl = "http://192.168.1.72:80";
   const url = `${baseUrl}/multi/login.php`;
 
-  const navigation = useNavigation()
+  const navigation = useNavigation();
 
 
   const styles = StyleSheet.create({
@@ -48,7 +48,7 @@ const Example = () => {
           .catch(function (error) {
               console.log(error);
           });
-      }
+      };
 
   return (
   <View>
