@@ -38,7 +38,7 @@ const Navigation = () =>{
                   iconName = focused ? 'ios-sunny' : 'ios-sunny-outline';
                 } else if(route.name === 'room2') {
                     iconName = focused ? 'ios-sunny' : 'ios-sunny-outline';
-                } else if (route.name === 'Settings') {
+                } else if (route.name === 'Set time') {
                   iconName = focused ? 'ios-list' : 'ios-list-outline';
                 }
                 
@@ -50,7 +50,7 @@ const Navigation = () =>{
         >
           <Tab.Screen name="room1" component={room1} />
           <Tab.Screen name="room2" component={room2} />
-          <Tab.Screen name="Settings" component={Settings} />
+          <Tab.Screen name="Set time" component={Settings} />
         </Tab.Navigator>
         )
     }

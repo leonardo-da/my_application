@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Picker, Select, Box, Icon, Heading, Stack, Text, FormControl, Input, VStack, Link, Button, HStack, Center, FlatList} from "native-base";
-import { StyleSheet } from 'react-native';
+import { StyleSheet, NativeModules } from 'react-native';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import NativeDevSettings from 'react-native/Libraries/NativeModules/specs/NativeDevSettings';
 
 
 const Example = () => {
@@ -36,11 +38,16 @@ const Example = () => {
     res();
   },[]);
 
-  function res() {
+  const res = () =>{
     axios.get(url2).then((response) => {
     console.log(response.data);
     setConfig(response.data);
   })};
+
+  const verif = async() =>{
+    await AsyncStorage.clear();
+    NativeDevSettings.reload();
+  };
 
     const lightOn = async() =>{
       if(HourOn == '' || MinuteOn == '' || roomOn == ''){
@@ -54,12 +61,12 @@ const Example = () => {
           .then(function (response) {
               console.log(response);
               alert(response.data);
+              res();
           })
           .catch(function (error) {
               console.log(error);
           });
       }
-        res();
         setHourOn('');
         setMinuteOn('');
         setRoomOn('');
@@ -77,16 +84,18 @@ const Example = () => {
           .then(function (response) {
               console.log(response);
               alert(response.data);
+              res();
           })
           .catch(function (error) {
               console.log(error);
           });
       }
-        res();
         setHourOff('');
         setMinuteOff('');
         setRoomOff('');
     };
+
+    
 
   return <Center w="100%" h="80%">
   <Box safeArea p="2" w="80%" py="8">
@@ -196,6 +205,15 @@ const Example = () => {
           Current Time
       </Heading>
     <Text fontSize="16">{Config}</Text>
+
+    
+    <Link style={{alignSelf: 'flex-end'}} _text={{
+      color: "#ff5a66",
+      fontWeight: "medium",
+      fontSize: "sm"
+    }} onPress={ verif }>
+        LOG OUT
+    </Link>
     </VStack>
   </Box>
 </Center>;
