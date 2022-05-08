@@ -22,7 +22,7 @@ const Example = () => {
       });
     }
     useEffect(() => {
-      setInterval(imget,5000);
+      setInterval(imget,2000);
     }, []);
     
 
